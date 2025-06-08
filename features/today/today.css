@@ -1,0 +1,84 @@
+/* Ghost button style for Begin button */
+.ghost-button {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-light);
+    color: var(--color-charcoal);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    outline: none;
+    min-width: 120px;
+}
+
+.ghost-button:hover {
+    transform: scale(1.02);
+    border-color: var(--color-light-gray);
+}
+
+.ghost-button:active {
+    transform: scale(0.98);
+}
+
+.ghost-button:focus-visible {
+    border-color: var(--color-medium-gray);
+    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.2);
+}
+
+/* Date styling */
+.date-header {
+    letter-spacing: var(--letter-spacing-heading);
+    color: var(--color-charcoal);
+}
+
+/* Prompt styling */
+.meditation-prompt {
+    color: var(--color-medium-gray);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Text link button */
+.text-link {
+    background: none;
+    border: none;
+    color: var(--color-medium-gray);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-light);
+    cursor: pointer;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    outline: none;
+}
+
+.text-link:hover {
+    color: var(--color-charcoal);
+    text-decoration: underline;
+}
+
+.text-link:focus-visible {
+    color: var(--color-charcoal);
+    text-decoration: underline;
+    outline: 2px solid var(--color-light-gray);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Link separator */
+.text-link-separator {
+    color: var(--color-light-gray);
+    margin: 0 var(--space-sm);
+    font-size: var(--font-size-sm);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .text-link-separator {
+        display: block;
+        text-align: center;
+        margin: var(--space-xs) 0;
+    }
+}

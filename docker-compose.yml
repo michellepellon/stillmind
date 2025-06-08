@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build: ./backend
+    container_name: stillmind-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_PATH=/app/data/stillmind.db
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key-here-change-this}
+      - JWT_EXPIRES_IN=30d
+      - SMTP_HOST=mailhog
+      - SMTP_PORT=1025
+      - SMTP_SECURE=false
+      - EMAIL_FROM=noreply@stillmind.local
+      - CORS_ORIGIN=http://localhost:8080
+      - FRONTEND_URL=http://localhost:8080
+      - RATE_LIMIT_WINDOW_MS=300000
+      - RATE_LIMIT_MAX_REQUESTS=3
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - mailhog
+    networks:
+      - stillmind-network
+    restart: unless-stopped
+
+  # Frontend (Nginx)
+  frontend:
+    image: nginx:1.25-bookworm
+    container_name: stillmind-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./:/usr/share/nginx/html:ro
+      - ./backend:/usr/share/nginx/html/backend:ro
+    depends_on:
+      - backend
+    networks:
+      - stillmind-network
+    restart: unless-stopped
+
+  # Local email server for development
+  mailhog:
+    image: mailhog/mailhog
+    container_name: stillmind-mailhog
+    ports:
+      - "1025:1025" # SMTP port
+      - "8025:8025" # Web UI
+    networks:
+      - stillmind-network
+    restart: unless-stopped
+
+networks:
+  stillmind-network:
+    driver: bridge
+
+volumes:
+  data:

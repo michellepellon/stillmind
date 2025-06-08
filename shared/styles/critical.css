@@ -1,0 +1,237 @@
+/* Critical CSS - Above the fold styles */
+
+/* CSS Custom Properties - Essential */
+:root {
+    --color-charcoal: #2a2a2a;
+    --color-medium-gray: #666666;
+    --color-light-gray: #999999;
+    --color-off-white: #fefefe;
+    --color-white: #ffffff;
+    --color-border: #e5e5e5;
+    
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-size-base: 1rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --line-height: 1.6;
+    
+    --transition-fast: 150ms ease-out;
+    --radius-lg: 16px;
+    --letter-spacing-heading: 3px;
+}
+
+/* Base styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height);
+    color: var(--color-charcoal);
+    background-color: var(--color-off-white);
+    height: 100%;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Essential layout */
+#app {
+    height: 100vh;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Splash screen critical styles */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-off-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 300ms ease-out;
+}
+
+.splash-screen.fade-out {
+    opacity: 0;
+}
+
+.splash-content {
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.splash-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--letter-spacing-heading);
+    color: var(--color-charcoal);
+    margin: var(--space-lg) 0 0;
+}
+
+/* Essential flex utilities */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.min-h-full {
+    min-height: 100vh;
+}
+
+/* Essential spacing */
+.p-lg {
+    padding: var(--space-lg);
+}
+
+.mb-lg {
+    margin-bottom: var(--space-lg);
+}
+
+.mb-xxl {
+    margin-bottom: 48px;
+}
+
+.mt-lg {
+    margin-top: var(--space-lg);
+}
+
+/* Essential typography */
+.text-xl {
+    font-size: var(--font-size-xl);
+}
+
+.text-2xl {
+    font-size: var(--font-size-2xl);
+}
+
+.font-light {
+    font-weight: var(--font-weight-light);
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}
+
+/* Essential button styles */
+button {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.ghost-button {
+    padding: var(--space-md) var(--space-xl);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    color: var(--color-charcoal);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-light);
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-height: 44px;
+    touch-action: manipulation;
+}
+
+.ghost-button:hover {
+    border-color: var(--color-light-gray);
+    transform: translateY(-1px);
+}
+
+.text-link {
+    color: var(--color-medium-gray);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-sm);
+}
+
+.text-link:hover {
+    color: var(--color-charcoal);
+}
+
+/* Essential animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .splash-content {
+        animation: none;
+    }
+}
+
+/* Dark mode essentials */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-charcoal: #f0f0f0;
+        --color-medium-gray: #c0c0c0;
+        --color-light-gray: #a0a0a0;
+        --color-off-white: #1a1a1a;
+        --color-white: #0f0f0f;
+        --color-border: #404040;
+    }
+}

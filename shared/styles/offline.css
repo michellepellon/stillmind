@@ -1,0 +1,136 @@
+/* Offline indicator styles */
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    z-index: 9999;
+    background: var(--error);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+.offline-indicator.visible {
+    transform: translateX(-50%) translateY(0);
+}
+
+.offline-indicator-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-sm);
+    font-weight: 500;
+}
+
+.offline-indicator-content.online {
+    background: var(--success);
+}
+
+.offline-indicator svg {
+    flex-shrink: 0;
+}
+
+/* Offline mode UI adjustments */
+body.offline {
+    /* Add subtle visual cue that we're offline */
+}
+
+body.offline .sync-indicator,
+body.offline .cloud-features {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Show offline badge on relevant buttons */
+body.offline .requires-connection::after {
+    content: '•';
+    color: var(--error);
+    margin-left: var(--spacing-xs);
+}
+
+/* Queue indicator for pending operations */
+.queue-indicator {
+    position: fixed;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-sm);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.queue-indicator.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.queue-indicator svg {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Offline-first optimizations */
+.offline-cached::before {
+    content: '✓';
+    color: var(--success);
+    margin-right: var(--spacing-xs);
+    font-size: var(--font-xs);
+}
+
+/* Loading states for offline */
+.offline-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.offline-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    to {
+        left: 100%;
+    }
+}
+
+/* Offline-specific animations */
+@media (prefers-reduced-motion: reduce) {
+    .offline-indicator,
+    .queue-indicator {
+        transition: none;
+    }
+    
+    .queue-indicator svg,
+    .offline-loading::after {
+        animation: none;
+    }
+}

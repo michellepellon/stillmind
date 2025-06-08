@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StillMind — A Sanctuary for Your Thoughts</title>
+    <meta name="description" content="The meditation journal that puts your privacy first. No social features, no streaks, no distractions. Just you, your thoughts, and inner peace.">
+    
+    <!-- Performance optimizations -->
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://stillmind.app/marketing">
+    
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/shared/styles/marketing-main.css" as="style">
+    <link rel="dns-prefetch" href="/">
+    <link rel="preconnect" href="/" crossorigin>
+    
+    <!-- Critical CSS - Inline for fast render -->
+    <style>
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors - Refined neutral palette */
+    --color-black: #0a0a0a;
+    --color-charcoal: #1a1a1a;
+    --color-gray-900: #0f0f0f;
+    --color-gray-800: #262626;
+    --color-gray-700: #404040;
+    --color-gray-600: #525252;
+    --color-gray-500: #737373;
+    --color-gray-400: #a3a3a3;
+    --color-gray-300: #d4d4d4;
+    --color-gray-200: #e5e5e5;
+    --color-gray-100: #f5f5f5;
+    --color-gray-50: #fafafa;
+    --color-white: #ffffff;
+    --color-accent: #000000;
+    --color-accent-hover: #1a1a1a;
+    --color-accent-subtle: #f8f8f8;
+    
+    /* Typography - System font stack */
+    --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --space-28: 112px;
+    --space-32: 128px;
+    --space-40: 160px;
+    
+    /* Layout */
+    --container-max: 1200px;
+    --container-narrow: 800px;
+    
+    /* Animations */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 150ms;
+    --duration-medium: 300ms;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-gray-800);
+    background: var(--color-white);
+    line-height: 1.6;
+    font-weight: var(--font-weight-regular);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+}
+
+/* Critical layout utilities */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+.container-narrow {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Header - Critical for sticky nav */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-5) 0;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-black);
+    text-decoration: none;
+    letter-spacing: -0.025em;
+}
+
+/* Hero section - Above the fold */
+.hero {
+    padding: var(--space-40) 0 var(--space-32);
+    background: var(--color-white);
+    position: relative;
+}
+
+.hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 8vw, 5rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: var(--space-8);
+    color: var(--color-black);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.125rem, 3vw, 1.375rem);
+    color: var(--color-gray-600);
+    font-weight: var(--font-weight-regular);
+    margin-bottom: var(--space-12);
+    line-height: 1.5;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: -0.01em;
+}
+
+/* Basic button styles for CTA */
+.button-primary {
+    background: var(--color-black);
+    color: var(--color-white);
+    padding: var(--space-4) var(--space-8);
+    border: none;
+    border-radius: 12px;
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all var(--duration-medium) var(--ease-out-expo);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    letter-spacing: -0.01em;
+}
+
+/* Focus styles for accessibility */
+:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Skip link - visible on focus */
+.sr-only:focus {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    z-index: 200;
+    width: auto;
+    height: auto;
+    padding: var(--space-3) var(--space-6);
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    background: var(--color-black);
+    color: var(--color-white);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Mobile responsive critical styles */
+@media (max-width: 768px) {
+    .container,
+    .container-narrow {
+        padding: 0 var(--space-5);
+    }
+    
+    .hero {
+        padding: var(--space-28) 0 var(--space-20);
+    }
+}
+    </style>
+    
+    <!-- Non-critical CSS - Load asynchronously -->
+    <link rel="preload" href="/shared/styles/marketing-main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/shared/styles/marketing-main.css"></noscript>
+</head>
+<body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">StillMind</a>
+            <a href="#download" class="nav-cta">Try StillMind</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-content container-narrow">
+                <div class="hero-badge">
+                    <span aria-label="Woman meditating" role="img">🧘‍♀️</span>
+                    <span>Privacy-first meditation journal</span>
+                </div>
+                <h1 class="hero-title">A Sanctuary for Your Thoughts</h1>
+                <p class="hero-subtitle">
+                    The meditation journal that puts your mind first. No followers, no streaks, no distractions—just you and your thoughts.
+                </p>
+                <div class="hero-cta">
+                    <a href="#download" class="button-primary">
+                        Start Your Practice
+                        <span>→</span>
+                    </a>
+                    <a href="#principles" class="button-secondary">Our Philosophy</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="principles" id="principles">
+            <div class="container">
+                <div class="section-header container-narrow">
+                    <h2 class="section-title">What We'll Never Do</h2>
+                    <p class="section-subtitle">
+                        Our commitment to your mental sanctuary means saying no to the digital noise that clutters modern apps
+                    </p>
+                </div>
+                
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <span class="principle-icon" aria-label="Prohibited sign" role="img">🚫</span>
+                        <h3 class="principle-title">No Social Features</h3>
+                        <p class="principle-description">
+                            Your thoughts are private. No sharing, no commenting, no comparing your practice to others. 
+                            Just pure, unfiltered self-reflection.
+                        </p>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <span class="principle-icon" aria-label="Target" role="img">🎯</span>
+                        <h3 class="principle-title">No Gamification</h3>
+                        <p class="principle-description">
+                            No streaks to maintain, no badges to earn, no points to collect. 
+                            Meditation isn't a game—it's a practice that honors your natural rhythm.
+                        </p>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <span class="principle-icon" aria-label="Megaphone" role="img">📢</span>
+                        <h3 class="principle-title">No Advertisements</h3>
+                        <p class="principle-description">
+                            Your moment of peace will never be interrupted by ads. 
+                            We respect the sacred space of your meditation practice.
+                        </p>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <span class="principle-icon" aria-label="Gear" role="img">⚙️</span>
+                        <h3 class="principle-title">No Complex Customization</h3>
+                        <p class="principle-description">
+                            Instead of endless settings, we've crafted one perfect experience. 
+                            Less time configuring, more time reflecting.
+                        </p>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <span class="principle-icon" aria-label="Lock" role="img">🔐</span>
+                        <h3 class="principle-title">No Account Requirements</h3>
+                        <p class="principle-description">
+                            Start writing immediately. Your thoughts shouldn't wait for passwords, 
+                            verification emails, or terms of service.
+                        </p>
+                    </div>
+                    
+                    <div class="principle-card">
+                        <span class="principle-icon" aria-label="Chart" role="img">📊</span>
+                        <h3 class="principle-title">No Analytics Tracking</h3>
+                        <p class="principle-description">
+                            We don't track how you use the app, when you meditate, or what you write. 
+                            Your digital footprint remains your own.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <div class="container">
+                <div class="section-header container-narrow">
+                    <h2 class="section-title">Simple, Honest Pricing</h2>
+                    <p class="section-subtitle">
+                        Use StillMind for free on your device, or sync across devices for the cost of a coffee
+                    </p>
+                </div>
+                
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3 class="pricing-plan">Local Only</h3>
+                        <div class="pricing-price">Free</div>
+                        <div class="pricing-period">Forever</div>
+                        <ul class="pricing-features">
+                            <li>Unlimited journal entries</li>
+                            <li>All meditation prompts</li>
+                            <li>Complete offline access</li>
+                            <li>Beautiful distraction-free interface</li>
+                            <li>No ads, ever</li>
+                        </ul>
+                        <a href="/app" class="pricing-button">Start Writing</a>
+                    </div>
+                    
+                    <div class="pricing-card featured">
+                        <h3 class="pricing-plan">Sync Account</h3>
+                        <div class="pricing-price">$22</div>
+                        <div class="pricing-period">per year</div>
+                        <ul class="pricing-features">
+                            <li>Everything in Local Only</li>
+                            <li>Sync across all devices</li>
+                            <li>Encrypted cloud backup</li>
+                            <li>Magic link authentication</li>
+                            <li>Export your data anytime</li>
+                        </ul>
+                        <a href="/app#signup" class="pricing-button primary">Enable Sync</a>
+                    </div>
+                </div>
+                
+                <p class="pricing-note container-tight">
+                    Like Pinboard, we believe in charging users instead of selling their data. 
+                    Your $22 keeps the lights on and your privacy intact.
+                </p>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-header container-narrow">
+                    <h2 class="section-title">What We Do Provide</h2>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3 class="feature-title">Distraction-Free Writing</h3>
+                        <p class="feature-description">
+                            Clean, minimal interface that fades away as you write, leaving only you and your thoughts. 
+                            Auto-save ensures your reflections are never lost.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title">Thoughtful Prompts</h3>
+                        <p class="feature-description">
+                            Gentle questions designed by meditation practitioners to guide your reflection, 
+                            from gratitude to emotional awareness.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title">Complete Offline Access</h3>
+                        <p class="feature-description">
+                            Your practice shouldn't depend on WiFi. StillMind works perfectly offline, 
+                            syncing quietly when you're ready.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title">Meditation Timer Integration</h3>
+                        <p class="feature-description">
+                            Seamlessly connect your sitting practice with your writing practice. 
+                            Log meditation duration to track your contemplative journey.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title">Beautiful Typography</h3>
+                        <p class="feature-description">
+                            Designed with the principles of Edward Tufte and Jony Ive, 
+                            every element serves your focus and contemplation.
+                        </p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title">Works Everywhere</h3>
+                        <p class="feature-description">
+                            Progressive Web App technology means StillMind works perfectly on iPhone, Android, 
+                            Mac, PC—anywhere you need to reflect.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy">
+            <div class="container">
+                <div class="section-header container-narrow">
+                    <h2 class="section-title">Your Privacy is Sacred</h2>
+                    <p class="section-subtitle">
+                        We believe your inner thoughts deserve the highest level of protection. 
+                        StillMind is built from the ground up with privacy as the foundation.
+                    </p>
+                </div>
+                
+                <div class="privacy-features">
+                    <div class="privacy-feature">
+                        <h3 class="privacy-feature-title">Client-Side Encryption</h3>
+                        <p class="privacy-feature-desc">
+                            Your entries are encrypted on your device before ever leaving it. 
+                            Not even we can read your thoughts.
+                        </p>
+                    </div>
+                    
+                    <div class="privacy-feature">
+                        <h3 class="privacy-feature-title">No Data Mining</h3>
+                        <p class="privacy-feature-desc">
+                            We don't analyze your writing patterns, emotions, or meditation habits. 
+                            Your data is yours alone.
+                        </p>
+                    </div>
+                    
+                    <div class="privacy-feature">
+                        <h3 class="privacy-feature-title">Optional Cloud Sync</h3>
+                        <p class="privacy-feature-desc">
+                            Sync across devices only if you want to. 
+                            Use StillMind completely locally if you prefer.
+                        </p>
+                    </div>
+                    
+                    <div class="privacy-feature">
+                        <h3 class="privacy-feature-title">Open Source</h3>
+                        <p class="privacy-feature-desc">
+                            Our code is transparent and auditable. 
+                            Trust through verification, not promises.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer" id="download">
+            <div class="container-narrow">
+                <h2 class="section-title">Begin Your Practice</h2>
+                <p class="section-subtitle">
+                    Join thousands of meditators who have found peace in digital simplicity. 
+                    Start your mindful writing practice today.
+                </p>
+                <div class="hero-cta">
+                    <a href="/app" class="button-primary">
+                        Open StillMind
+                        <span>→</span>
+                    </a>
+                </div>
+                <p class="footer-note">
+                    Free to use locally • Optional $22/year sync • No signup required • Respects your privacy
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        // Progressive enhancement with Intersection Observer
+        if ('IntersectionObserver' in window) {
+            // Lazy loading for below-fold sections
+            const lazyLoadSections = document.querySelectorAll('.principles, .pricing, .features, .privacy, .footer');
+            
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-loaded');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.01
+            });
+            
+            lazyLoadSections.forEach(section => {
+                section.classList.add('section-lazy');
+                sectionObserver.observe(section);
+            });
+            
+            // Staggered animations for cards
+            const animatedCards = document.querySelectorAll('.principle-card, .pricing-card, .feature, .privacy-feature');
+            
+            const cardObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add stagger delay based on visible position
+                        const visibleCards = Array.from(entry.target.parentElement.children)
+                            .filter(card => card.getBoundingClientRect().top < window.innerHeight);
+                        const cardIndex = visibleCards.indexOf(entry.target);
+                        
+                        entry.target.style.setProperty('--index', cardIndex);
+                        entry.target.classList.add('card-animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -100px 0px',
+                threshold: 0.1
+            });
+            
+            animatedCards.forEach(card => {
+                card.classList.add('card-waiting');
+                cardObserver.observe(card);
+            });
+        }
+    </script>
+</body>
+</html>

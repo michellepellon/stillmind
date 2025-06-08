@@ -1,0 +1,87 @@
+{
+  "name": "StillMind - Meditation Journal",
+  "short_name": "StillMind",
+  "description": "A minimalist meditation journal for mindful reflection",
+  "start_url": "/?utm_source=pwa",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#fefefe",
+  "background_color": "#fefefe",
+  "categories": ["lifestyle", "health", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshots/home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Home screen with meditation prompt"
+    },
+    {
+      "src": "/assets/screenshots/write.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Writing interface"
+    },
+    {
+      "src": "/assets/screenshots/history.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Journal history"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Write",
+      "short_name": "Write",
+      "description": "Start a new journal entry",
+      "url": "/#write",
+      "icons": [
+        {
+          "src": "/assets/icons/write-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "History",
+      "short_name": "History",
+      "description": "View past entries",
+      "url": "/#history",
+      "icons": [
+        {
+          "src": "/assets/icons/history-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

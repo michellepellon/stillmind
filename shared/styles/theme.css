@@ -1,0 +1,64 @@
+:root {
+    /* Color Palette */
+    --color-charcoal: #2a2a2a;
+    --color-medium-gray: #666666;
+    --color-light-gray: #999999;
+    --color-off-white: #fefefe;
+    --color-white: #ffffff;
+    --color-subtle-gray: #f5f5f5;
+    --color-border: #e5e5e5;
+    
+    /* Spacing Scale */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --line-height: 1.6;
+    --line-height-tight: 1.2;
+    --letter-spacing-heading: 3px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease-out;
+    --transition-base: 200ms ease-out;
+    --transition-slow: 300ms ease-out;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05);
+    
+    /* Z-index Scale */
+    --z-base: 0;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-overlay: 300;
+    --z-modal: 400;
+    --z-tooltip: 500;
+    
+    /* Semantic Colors */
+    --success: #27ae60;
+    --error: #e74c3c;
+    --warning: #f39c12;
+    --info: #3498db;
+}

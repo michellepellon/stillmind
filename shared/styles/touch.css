@@ -1,0 +1,246 @@
+/* Enhanced touch targets and spacing */
+
+/* Minimum touch target sizes (44px minimum) */
+button,
+[role="button"],
+a,
+input,
+select,
+textarea {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+}
+
+/* Enhanced touch targets for important actions */
+.primary-action {
+    min-height: 56px;
+    padding: var(--space-md) var(--space-xl);
+}
+
+.secondary-action {
+    min-height: 48px;
+    padding: var(--space-sm) var(--space-lg);
+}
+
+/* Better spacing for touch interactions */
+.touch-list > * + * {
+    margin-top: var(--space-md);
+}
+
+.touch-grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+/* Improved button spacing */
+.button-group {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.button-group--inline {
+    display: inline-flex;
+    gap: var(--space-sm);
+}
+
+/* Better form spacing */
+form > * + * {
+    margin-top: var(--space-lg);
+}
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Enhanced clickable areas */
+.clickable-area {
+    position: relative;
+    cursor: pointer;
+}
+
+.clickable-area::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    z-index: -1;
+}
+
+/* Better visual hierarchy with spacing */
+.content-section + .content-section {
+    margin-top: var(--space-xxl);
+}
+
+.content-block + .content-block {
+    margin-top: var(--space-xl);
+}
+
+/* Improved whitespace for readability */
+.breathing-room {
+    padding: var(--space-xl);
+}
+
+.breathing-room-sm {
+    padding: var(--space-lg);
+}
+
+.breathing-room-lg {
+    padding: var(--space-xxl);
+}
+
+/* Better visual separation */
+.visual-separator {
+    border: none;
+    height: 1px;
+    background: var(--color-border);
+    margin: var(--space-xl) 0;
+}
+
+.visual-separator--subtle {
+    background: rgba(229, 229, 229, 0.5);
+    margin: var(--space-lg) 0;
+}
+
+/* Enhanced card spacing */
+.card {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+}
+
+.card--compact {
+    padding: var(--space-lg);
+}
+
+.card + .card {
+    margin-top: var(--space-lg);
+}
+
+/* Better container spacing */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.container--narrow {
+    max-width: 800px;
+}
+
+.container--wide {
+    max-width: 1400px;
+}
+
+/* Responsive spacing adjustments */
+@media (max-width: 768px) {
+    .primary-action {
+        min-height: 52px;
+        width: 100%;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .button-group button {
+        width: 100%;
+    }
+    
+    .container {
+        padding: 0 var(--space-md);
+    }
+    
+    .breathing-room {
+        padding: var(--space-lg);
+    }
+    
+    .breathing-room-lg {
+        padding: var(--space-xl);
+    }
+    
+    .card {
+        padding: var(--space-lg);
+    }
+}
+
+/* Improved focus management for touch */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .hover-lift:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .hover-scale:hover {
+        transform: none;
+    }
+    
+    .hover-fade:hover {
+        opacity: 1;
+    }
+    
+    /* Enhanced active states for touch */
+    button:active,
+    [role="button"]:active,
+    .clickable:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Better touch scrolling */
+.scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Enhanced pull-to-refresh area */
+.pull-refresh-zone {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: pan-y;
+}
+
+/* Improved swipe zones */
+.swipe-zone {
+    touch-action: pan-x;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Better text selection on touch */
+.selectable-text {
+    user-select: text;
+    -webkit-user-select: text;
+    cursor: text;
+}
+
+.non-selectable {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Enhanced accessibility for touch */
+@media (prefers-reduced-motion: no-preference) {
+    .touch-feedback {
+        transition: all 0.1s ease;
+    }
+    
+    .touch-feedback:active {
+        transform: scale(0.95);
+    }
+}

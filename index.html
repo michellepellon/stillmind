@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="StillMind - A minimalist meditation journal for mindful reflection">
+    <title>StillMind</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#fefefe">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="StillMind">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png">
+    
+    <!-- iOS Splash Screens -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- iPhone X, XS, 11 Pro -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="/assets/splash/splash-1125x2436.png">
+    <!-- iPhone XR, 11 -->
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" href="/assets/splash/splash-828x1792.png">
+    <!-- iPhone XS Max, 11 Pro Max -->
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="/assets/splash/splash-1242x2688.png">
+    <!-- iPhone 8, 7, 6s, 6 -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/assets/splash/splash-750x1334.png">
+    <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus -->
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/assets/splash/splash-1242x2208.png">
+    
+    <!-- MS Tile -->
+    <meta name="msapplication-TileColor" content="#fefefe">
+    <meta name="msapplication-TileImage" content="/assets/icons/icon-144.png">
+    
+    <!-- Resource Hints -->
+    <link rel="preload" href="shared/styles/base.css" as="style">
+    <link rel="preload" href="shared/styles/theme.css" as="style">
+    <link rel="preload" href="app.js" as="script">
+    <link rel="preload" href="router.js" as="script">
+    <link rel="preload" href="core/db.js" as="script">
+    
+    <!-- Critical CSS Inline -->
+    <style>
+        :root{--color-charcoal:#2a2a2a;--color-medium-gray:#666;--color-light-gray:#999;--color-off-white:#fefefe;--color-white:#fff;--color-border:#e5e5e5;--space-sm:8px;--space-md:16px;--space-lg:24px;--space-xl:32px;--font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;--font-weight-light:300;--font-weight-regular:400;--font-size-base:1rem;--font-size-xl:1.25rem;--font-size-2xl:1.5rem;--line-height:1.6;--transition-fast:150ms ease-out;--radius-lg:16px;--letter-spacing-heading:3px}*,*::before,*::after{box-sizing:border-box}html{height:100%}body{margin:0;padding:0;font-family:var(--font-family);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-charcoal);background-color:var(--color-off-white);height:100%;overflow-x:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}#app{height:100vh;min-height:100vh;position:relative}.splash-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--color-off-white);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 300ms ease-out}.splash-screen.fade-out{opacity:0}.splash-content{text-align:center;animation:fadeInUp .6s ease-out}.splash-title{font-size:var(--font-size-2xl);font-weight:var(--font-weight-light);letter-spacing:var(--letter-spacing-heading);color:var(--color-charcoal);margin:var(--space-lg) 0 0}.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.text-center{text-align:center}.min-h-full{min-height:100vh}.p-lg{padding:var(--space-lg)}.mb-lg{margin-bottom:var(--space-lg)}.mb-xxl{margin-bottom:48px}.mt-lg{margin-top:var(--space-lg)}.text-xl{font-size:var(--font-size-xl)}.text-2xl{font-size:var(--font-size-2xl)}.font-light{font-weight:var(--font-weight-light)}.opacity-75{opacity:.75}button{font-family:inherit;font-size:inherit;border:none;background:none;cursor:pointer;padding:0;margin:0}.ghost-button{padding:var(--space-md) var(--space-xl);background:transparent;border:1px solid var(--color-border);border-radius:9999px;color:var(--color-charcoal);font-size:var(--font-size-base);font-weight:var(--font-weight-light);letter-spacing:1px;cursor:pointer;transition:all var(--transition-fast);min-height:44px;touch-action:manipulation}.ghost-button:hover{border-color:var(--color-light-gray);transform:translateY(-1px)}.text-link{color:var(--color-medium-gray);text-decoration:none;cursor:pointer;transition:color var(--transition-fast);min-height:44px;display:inline-flex;align-items:center;padding:var(--space-sm)}.text-link:hover{color:var(--color-charcoal)}@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.splash-content{animation:none}}@media (prefers-color-scheme:dark){:root{--color-charcoal:#f0f0f0;--color-medium-gray:#c0c0c0;--color-light-gray:#a0a0a0;--color-off-white:#1a1a1a;--color-white:#0f0f0f;--color-border:#404040}}
+    </style>
+    
+    <!-- Critical Styles -->
+    <link rel="stylesheet" href="shared/styles/base.css">
+    <link rel="stylesheet" href="shared/styles/theme.css">
+    <link rel="stylesheet" href="shared/styles/refined.css">
+    <link rel="stylesheet" href="shared/styles/splash-refined.css">
+    
+    <!-- Non-critical styles - load asynchronously -->
+    <link rel="preload" href="shared/styles/typography.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="shared/styles/touch.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="shared/styles/utils.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="shared/styles/offline.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="shared/styles/interactions.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Feature styles - load on demand -->
+    <link rel="prefetch" href="features/today/today-refined.css">
+    <link rel="prefetch" href="features/write/write-refined.css">
+    <link rel="prefetch" href="features/today/today.css">
+    <link rel="prefetch" href="features/write/write.css">
+    <link rel="prefetch" href="features/history/history.css">
+    <link rel="prefetch" href="features/entry/entry.css">
+    <link rel="prefetch" href="features/settings/settings.css">
+    
+    <!-- Fallback for preload -->
+    <noscript>
+        <link rel="stylesheet" href="shared/styles/typography.css">
+        <link rel="stylesheet" href="shared/styles/touch.css">
+        <link rel="stylesheet" href="shared/styles/utils.css">
+        <link rel="stylesheet" href="shared/styles/offline.css">
+        <link rel="stylesheet" href="shared/styles/interactions.css">
+        <link rel="stylesheet" href="features/today/today.css">
+        <link rel="stylesheet" href="features/write/write.css">
+        <link rel="stylesheet" href="features/history/history.css">
+        <link rel="stylesheet" href="features/entry/entry.css">
+        <link rel="stylesheet" href="features/settings/settings.css">
+    </noscript>
+</head>
+<body class="no-js">
+    <script>document.body.classList.remove('no-js');</script>
+    
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splash">
+        <div class="splash-content">
+            <div class="splash-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+                    <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5" opacity="0.2"/>
+                </svg>
+            </div>
+            <h1 class="splash-title">STILLMIND</h1>
+        </div>
+    </div>
+    
+    <div id="app"></div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

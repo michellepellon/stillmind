@@ -1,0 +1,507 @@
+/* Refined Write Interface - The Deepest Focus */
+
+/*
+DESIGN PHILOSOPHY FOR DISTRACTION-FREE WRITING:
+
+1. INVISIBLE INTERFACE
+   - UI completely disappears during writing
+   - Only text and thought remain
+   - No visual noise whatsoever
+
+2. PERFECT TYPOGRAPHY
+   - Optimized for extended contemplative writing
+   - Comfortable line height and spacing
+   - Ideal contrast and readability
+
+3. SEAMLESS INTERACTION
+   - Auto-save without interruption
+   - Intelligent timing based on writing patterns
+   - Graceful state management
+
+4. RESPECTFUL FEEDBACK
+   - Subtle save indicators that don't break flow
+   - Error states that inform but don't alarm
+   - Progress feedback at appropriate moments
+
+5. WRITING MODE
+   - Interface fades away during active writing
+   - Full immersion in the writing experience
+   - Easy return to navigation when needed
+*/
+
+/* Container - Full immersion */
+.write-container {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-background);
+    transition: all var(--duration-slow) var(--ease-out);
+}
+
+/* Header - Minimal presence */
+.write-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-6);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    transition: all var(--duration-normal) var(--ease-out);
+    /* Subtle but accessible when needed */
+}
+
+/* Writing mode - UI fades away */
+.writing-mode .write-header {
+    opacity: 0.3;
+    transform: translateY(-2px);
+}
+
+.writing-mode .write-header:hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Back button - Consistent with Settings page */
+.write-back-btn {
+    appearance: none;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: var(--font-size-subhead);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    letter-spacing: -0.003em;
+}
+
+.write-back-btn:hover {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+}
+
+.write-back-btn:active {
+    transform: scale(0.95);
+}
+
+/* Dark mode visibility for write back button */
+@media (prefers-color-scheme: dark) {
+    .write-back-btn {
+        color: var(--text-secondary);
+    }
+    
+    .write-back-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-primary);
+    }
+}
+
+.write-back-icon {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5;
+    transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.write-back-btn:hover .write-back-icon {
+    transform: translateX(-1px);
+}
+
+.write-back-text {
+    font-weight: var(--font-weight-medium);
+}
+
+/* Save indicator - Whisper-quiet feedback */
+.write-save-indicator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--font-size-caption2);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-tertiary);
+    opacity: 0;
+    transition: all var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
+    pointer-events: none;
+    /* Appears only when needed, never intrusive */
+}
+
+.write-save-indicator.visible {
+    opacity: 0.8;
+}
+
+.write-save-indicator.success {
+    color: var(--color-success);
+}
+
+.write-save-indicator.error {
+    color: var(--color-error);
+}
+
+.write-save-indicator.offline {
+    color: var(--color-warning);
+}
+
+/* Header spacer for balance */
+.write-header-spacer {
+    width: 60px; /* Balance the back button */
+}
+
+/* Main writing area - Pure canvas */
+.write-main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.write-content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* The textarea - Perfected instrument of thought */
+.write-textarea {
+    flex: 1;
+    width: 100%;
+    min-height: 100%;
+    padding: var(--space-20) var(--space-8);
+    margin: 0;
+    border: none;
+    outline: none;
+    resize: none;
+    background: transparent;
+    
+    /* Perfect typography for contemplation */
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
+    letter-spacing: -0.003em;
+    color: var(--color-primary);
+    
+    /* Optimized text rendering */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+    
+    /* Perfect caret */
+    caret-color: var(--color-accent);
+    
+    /* Seamless scrolling */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    
+    /* Remove all browser styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    /* Disable unwanted features */
+    spellcheck: true; /* Keep spellcheck for writing quality */
+}
+
+/* Placeholder - Gentle invitation */
+.write-textarea::placeholder {
+    color: var(--color-tertiary);
+    font-style: normal;
+    opacity: 0.6;
+}
+
+/* Focus state - Invisible by design */
+.write-textarea:focus {
+    /* No visible focus ring - the content is the focus */
+}
+
+/* Optimal reading width on larger screens */
+@media (min-width: 768px) {
+    .write-textarea {
+        max-width: 68ch; /* Optimal for reading and writing */
+        margin: 0 auto;
+        padding-left: var(--space-12);
+        padding-right: var(--space-12);
+    }
+}
+
+@media (min-width: 1024px) {
+    .write-textarea {
+        max-width: 70ch;
+        padding: var(--space-24) var(--space-16);
+    }
+}
+
+/* Mobile optimizations - Touch-first */
+@media (max-width: 767px) {
+    .write-header {
+        padding: var(--space-2) var(--space-4);
+    }
+    
+    .write-textarea {
+        padding: var(--space-12) var(--space-6);
+        font-size: var(--font-size-callout);
+        line-height: 1.55;
+    }
+    
+    /* iOS specific adjustments */
+    .write-textarea {
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .write-textarea {
+        padding: var(--space-8) var(--space-4);
+    }
+    
+    .write-back-btn {
+        padding: var(--space-2);
+    }
+    
+    .write-back-text {
+        display: none; /* Just show icon on very small screens */
+    }
+}
+
+/* Unsaved changes dialog - Clear but not alarming */
+.unsaved-dialog {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: var(--space-8);
+}
+
+.unsaved-dialog-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--space-20);
+    max-width: 420px;
+    width: 100%;
+    box-shadow: var(--shadow-xl);
+    animation: dialogSlideIn var(--duration-normal) var(--ease-spring);
+}
+
+.unsaved-dialog-title {
+    font-size: var(--font-size-headline);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-3) 0;
+    letter-spacing: -0.005em;
+}
+
+.unsaved-dialog-message {
+    font-size: var(--font-size-subhead);
+    color: var(--color-secondary);
+    line-height: 1.4;
+    margin: 0 0 var(--space-16) 0;
+}
+
+.unsaved-dialog-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-direction: column;
+}
+
+@media (min-width: 480px) {
+    .unsaved-dialog-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    
+    .unsaved-dialog-actions .btn {
+        min-width: 100px;
+    }
+}
+
+/* Duration picker - Thoughtful interruption */
+.duration-picker {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.duration-picker.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.duration-picker-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: var(--space-20);
+    max-width: 400px;
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform var(--duration-normal) var(--ease-spring);
+    box-shadow: var(--shadow-xl);
+}
+
+.duration-picker.visible .duration-picker-content {
+    transform: translateY(0);
+}
+
+.duration-picker-title {
+    font-size: var(--font-size-headline);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+    text-align: center;
+    margin: 0 0 var(--space-16) 0;
+    letter-spacing: -0.005em;
+}
+
+.duration-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-12);
+}
+
+.duration-option {
+    appearance: none;
+    background: var(--color-divider);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-2);
+    font-size: var(--font-size-subhead);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+    min-height: 48px;
+    text-align: center;
+}
+
+.duration-option:hover {
+    background: var(--color-quaternary);
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+}
+
+.duration-option:active {
+    transform: translateY(0);
+}
+
+.duration-skip {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: var(--color-tertiary);
+    font-size: var(--font-size-subhead);
+    font-weight: var(--font-weight-regular);
+    padding: var(--space-4);
+    cursor: pointer;
+    transition: color var(--duration-fast) var(--ease-out);
+    width: 100%;
+    text-align: center;
+}
+
+.duration-skip:hover {
+    color: var(--color-secondary);
+}
+
+/* Animations */
+@keyframes dialogSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Dark mode - Deeper focus */
+@media (prefers-color-scheme: dark) {
+    .write-header {
+        background: rgba(28, 28, 30, 0.95);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .writing-mode .write-header {
+        opacity: 0.2;
+    }
+    
+    .write-back-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+    }
+    
+    .duration-picker {
+        background: rgba(0, 0, 0, 0.4);
+    }
+    
+    .duration-option {
+        background: var(--color-quaternary);
+        color: var(--color-primary);
+    }
+    
+    .duration-option:hover {
+        background: var(--color-tertiary);
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .write-header {
+        border-bottom-width: 2px;
+    }
+    
+    .write-save-indicator.visible {
+        opacity: 1;
+        font-weight: var(--font-weight-medium);
+    }
+    
+    .duration-option {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion - Respect preferences */
+@media (prefers-reduced-motion: reduce) {
+    .write-container,
+    .write-header,
+    .write-save-indicator,
+    .duration-picker,
+    .duration-picker-content,
+    .unsaved-dialog-content {
+        transition: none;
+    }
+    
+    .duration-option:hover,
+    .write-back-btn:hover .write-back-icon {
+        transform: none;
+    }
+    
+    .unsaved-dialog-content {
+        animation: none;
+    }
+}

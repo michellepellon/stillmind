@@ -1,0 +1,328 @@
+/* Micro-interactions and animations */
+
+/* Button press effects */
+.btn,
+button,
+[role="button"],
+.clickable {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-fast);
+}
+
+.btn:active,
+button:active,
+[role="button"]:active,
+.clickable:active {
+    transform: scale(0.98);
+}
+
+/* Ripple effect for button clicks */
+.btn::after,
+button::after,
+[role="button"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btn:active::after,
+button:active::after,
+[role="button"]:active::after {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    transition: width 0.15s ease, height 0.15s ease, opacity 0.15s ease;
+}
+
+/* Smooth hover states */
+.hover-lift {
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.hover-fade {
+    transition: opacity var(--transition-fast);
+}
+
+.hover-fade:hover {
+    opacity: 0.8;
+}
+
+/* Loading skeletons */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--color-subtle-gray),
+        rgba(255, 255, 255, 0.8),
+        var(--color-subtle-gray)
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.skeleton-text {
+    height: 1em;
+    margin-bottom: var(--space-sm);
+}
+
+.skeleton-text:last-child {
+    margin-bottom: 0;
+    width: 70%;
+}
+
+.skeleton-title {
+    height: 1.5em;
+    width: 40%;
+    margin-bottom: var(--space-md);
+}
+
+/* Progress indicators */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--color-subtle-gray);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--color-medium-gray);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-slow);
+    animation: pulse-progress 2s ease-in-out infinite;
+}
+
+@keyframes pulse-progress {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Floating animation */
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Fade in animations */
+.fade-in {
+    animation: fadeIn var(--transition-slow) ease-out;
+}
+
+.fade-in-up {
+    animation: fadeInUp var(--transition-slow) ease-out;
+}
+
+.fade-in-down {
+    animation: fadeInDown var(--transition-slow) ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scale in animation */
+.scale-in {
+    animation: scaleIn var(--transition-fast) ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Slide animations */
+.slide-in-left {
+    animation: slideInLeft var(--transition-slow) ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight var(--transition-slow) ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Loading spinner */
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--color-border);
+    border-top-color: var(--color-medium-gray);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.spinner-lg {
+    width: 48px;
+    height: 48px;
+    border-width: 4px;
+}
+
+/* Pulse animation */
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Bounce animation */
+.bounce {
+    animation: bounce 0.6s ease-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Success checkmark animation */
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--success);
+    position: relative;
+    animation: checkmark-scale 0.3s ease-out;
+}
+
+.checkmark::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 9px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    animation: checkmark-draw 0.3s ease-out 0.1s both;
+}
+
+@keyframes checkmark-scale {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes checkmark-draw {
+    0% { 
+        height: 0;
+        opacity: 0;
+    }
+    100% { 
+        height: 12px;
+        opacity: 1;
+    }
+}
+
+/* Focus indicators */
+.focus-ring:focus-visible {
+    outline: 2px solid var(--color-medium-gray);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Haptic feedback class */
+.haptic {
+    /* Will be used by JS to trigger haptic feedback */
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .skeleton {
+        animation: none;
+        background: var(--color-subtle-gray);
+    }
+    
+    .progress-fill {
+        animation: none;
+    }
+}
